@@ -6,6 +6,12 @@ function guess() {
     if(answer === "" && attempt === "") {
         setHiddenFields();
     }
+    
+    if(!validateInput(input.value)) {
+        return false;
+    } else {
+        attempt.value++;
+    }
 }
 
 //implement new functions here
@@ -31,3 +37,6 @@ function validateInput(userInput) {
         return false;
     }
 }
+Create an if condition block that uses validateInput with a parameter of input.value as the conditional. If validateInput returns false, then use return false to stop execution of the guess function, otherwise we should increment the attempt hidden input by 1.
+
+Hint: You can negate a value on the if statement by using the exclamation point, like this: if(!someValue).
