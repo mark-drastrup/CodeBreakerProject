@@ -38,4 +38,25 @@ function validateInput(userInput) {
     }
 }
 
-//test
+function getResults(input) {
+    let html = '<div class="row"><span class="col-md-6">' + input + '</span><div class="col-md-6">';
+    let rightGuess = 0;
+    for(i = 0; i < input.length; i++) {
+        if(input.charAt(i) == answer.value.charAt(i)) {
+            html += '<span class="glyphicon glyphicon-ok"></span>';
+            rightGuess++;
+        } else if(answer.value.indexOf(input.charAt(i)) < -1) {
+            html += '<span class="glyphicon glyphicon-transfer"></span>';
+        } else {
+            html += '<span class="glyphicon glyphicon-remove"></span>';
+        }
+    }
+    html += '</div></div>';
+    document.getElementById('result').innerHTML += html;
+    
+    if(rightGuess === 4) {
+        return true;
+    } else {
+        return false;
+    }
+}
