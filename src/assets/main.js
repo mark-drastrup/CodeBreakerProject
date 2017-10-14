@@ -12,6 +12,6 @@ function setHiddenFields() {
     var answerString = answer.value.toString();
     
     while(answerString.length < 4) {
-          answer.value.prepend(0);
+          answer.value = "0" + answer.value;
     }
 }
