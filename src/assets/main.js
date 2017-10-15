@@ -56,7 +56,7 @@ function getResults(input) {
         if(input.charAt(i) == answer.value.charAt(i)) {
             html += '<span class="glyphicon glyphicon-ok"></span>';
           
-        } else if(answer.value.indexOf(input.charAt(i)) < -1) {
+        } else if(answer.value.indexOf(input.charAt(i)) > -1) {
             html += '<span class="glyphicon glyphicon-transfer"></span>';
         } else {
             html += '<span class="glyphicon glyphicon-remove"></span>';
