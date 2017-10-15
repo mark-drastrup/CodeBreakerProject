@@ -59,7 +59,7 @@ function getResults(input) {
         }
     }
     html += '</div></div>';
-    document.getElementById('result').innerHTML += html;
+    document.getElementById('results').innerHTML += html;
     
     if(rightGuess === 4) {
         return true;
