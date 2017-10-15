@@ -3,21 +3,21 @@ let attempt = document.getElementById('attempt');
 
 function guess() {
     let input = document.getElementById('user-guess');
-    if(answer === "" && attempt === "") {
+    if(answer.value === "" || attempt.value === "") {
         setHiddenFields();
     }
     
     if(!validateInput(input.value)) {
-        return false;
-    } else {
-        attempt.value++;
-    }
+        return;
+    } 
+    attempt.value++;
+    
     
     if(getResults(input.value)) {
         setMessage("You win! :)");
         showAnswer(true);
         showReplay();
-    } else if(!getResults(input.value) && attempt.value >= 10) {
+    } else if(attempt.value >= 10) {
         setMessage("You Lose! :(");  
         showAnswer(false);
         showReplay();
@@ -28,13 +28,11 @@ function guess() {
 
 //implement new functions here
 function setHiddenFields() {
-    answer.value = Math.floor(Math.random() * 9999);
-    attempt.value = 0;
-    var answerString = answer.value.toString();
-    
-    while(answerString.length < 4) {
+    answer.value = Math.floor(Math.random() * 10000).toString();
+    while(answer.value.length < 4) {
           answer.value = "0" + answer.value;
     }
+    attempt.value = "0"
 }
 
 function setMessage(msg) {
@@ -42,12 +40,11 @@ function setMessage(msg) {
 }
 
 function validateInput(userInput) {
-    if(userInput.length === 4) {
-       return true;
-    } else {
-        document.getElementById("message").innerHTML = "Guesses must be exactly 4 characters long.";
+    if(userInput.length != 4) {
+        setMessage("Guesses must be exactly 4 characters long.");    
         return false;
-    }
+    } 
+        return true;
 }
 
 function getResults(input) {
@@ -55,7 +52,6 @@ function getResults(input) {
     for(i = 0; i < input.length; i++) {
         if(input.charAt(i) == answer.value.charAt(i)) {
             html += '<span class="glyphicon glyphicon-ok"></span>';
-          
         } else if(answer.value.indexOf(input.charAt(i)) > -1) {
             html += '<span class="glyphicon glyphicon-transfer"></span>';
         } else {
@@ -68,18 +64,19 @@ function getResults(input) {
     
     if(input === answer.value) {
         return true;
-    } else {
-        return false;
-    }
+    } 
+    return false;
+    
 }
 
 function showAnswer(param) {
-    document.getElementById("code").innerHTML = answer.value;
+    let code = document.getElementById('code');
     if(param) {
-        document.getElementById("code").addClass(" succes");
+        code.className += " success"
     } else {
-         document.getElementById("code").addClass(" failure");
+        code.className += " failure"
     }
+    code.innerHTML = answer.value;
 }
 
 function showReplay() {
