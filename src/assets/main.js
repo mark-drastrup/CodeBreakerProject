@@ -15,11 +15,14 @@ function guess() {
     
     if(getResults(input.value)) {
        setMessage("You win! :)");
-    }
-    else if(!getResults(input.value) && attempt.value >= 10) {
+    } else if(!getResults(input.value) && attempt.value >= 10) {
         setMessage("You Lose! :(");    
+    } else {
+        setMessage("Incorrect, try again.");
     }
 }
+
+
 
 //implement new functions here
 function setHiddenFields() {
@@ -68,3 +71,11 @@ function getResults(input) {
     }
 }
 
+function showAnswer(param) {
+    document.getElementById("code").innerHTML = answer.value;
+    if(param) {
+        document.getElementById("code").addClass(" succes");
+    } else {
+         document.getElementById("code").addClass(" failure");
+    }
+}
