@@ -14,15 +14,17 @@ function guess() {
     }
     
     if(getResults(input.value)) {
-       setMessage("You win! :)");
+        setMessage("You win! :)");
+        showAnswer(true);
+        showReplay();
     } else if(!getResults(input.value) && attempt.value >= 10) {
-        setMessage("You Lose! :(");    
+        setMessage("You Lose! :(");  
+        showAnswer(false);
+        showReplay();
     } else {
         setMessage("Incorrect, try again.");
     }
 }
-
-
 
 //implement new functions here
 function setHiddenFields() {
@@ -78,4 +80,9 @@ function showAnswer(param) {
     } else {
          document.getElementById("code").addClass(" failure");
     }
+}
+
+function showReplay() {
+    document.getElementById("guessing-div").style.display = "none";
+    document.getElementById("replay-div").style.display = "block";
 }
