@@ -52,7 +52,6 @@ function validateInput(userInput) {
 
 function getResults(input) {
     let html = '<div class="row"><span class="col-md-6">' + input + '</span><div class="col-md-6">';
-    let rightGuess = 0;
     for(i = 0; i < input.length; i++) {
         if(input.charAt(i) == answer.value.charAt(i)) {
             html += '<span class="glyphicon glyphicon-ok"></span>';
@@ -66,6 +65,7 @@ function getResults(input) {
     html += '</div></div>';
     document.getElementById('results').innerHTML += html;
     
+    let rightGuess = 0;
     if(rightGuess === 4) {
         return true;
     } else {
